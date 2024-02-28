@@ -28,7 +28,7 @@ fn select_helper<T: Clone>(refs: &Vec<T>, n: usize) -> Vec<Vec<T>> {
 
 pub fn multiply<T>(a: &Vec<&Vec<T>>) -> Vec<Vec<T>> {
     let mut max_iter = 100;
-    let mut new: Vec<Vec<T>> = vec![];
+    let mut result: Vec<Vec<T>> = vec![];
     let mut counts: Vec<[usize; 2]> = vec![];
     for ae in a {
         counts.push([ae.len(), ae.len()]);
@@ -38,11 +38,14 @@ pub fn multiply<T>(a: &Vec<&Vec<T>>) -> Vec<Vec<T>> {
         let n: Vec<T> = vec![];
         println!("{:?}", counts);
         
-        // TODO
+        // TODO add combination to n
         for c in counts.iter().enumerate() {}
-        new.push(n);
+
+        // add n to result
+        result.push(n);
         
         // decrease count
+        // TODO add last count to loop
         let len = counts.len();
         for i in 0..len {
             use std::cmp::Ordering;
@@ -59,7 +62,7 @@ pub fn multiply<T>(a: &Vec<&Vec<T>>) -> Vec<Vec<T>> {
             }
         }
     }
-    new
+    result
 }
 
 #[cfg(test)]
