@@ -34,11 +34,13 @@ pub fn multiply<T: Copy>(a: &Vec<&Vec<T>>) -> Vec<Vec<T>> {
         counts.push([ae.len(), ae.len()]);
     }
     let len = counts.len();
+
+    let mut last_iter = false;
     'a: while max_iter > 0 {
         max_iter -= 1;
         let mut n: Vec<T> = vec![];
 
-        // TODO add combination to n
+        // add combination to n
         for i in 0..len {
             n.push(a[i][counts[i][0] - 1]);
         }
@@ -48,6 +50,10 @@ pub fn multiply<T: Copy>(a: &Vec<&Vec<T>>) -> Vec<Vec<T>> {
 
         // decrease count
         // TODO add last count to loop
+        if last_iter {
+            break;
+        }
+        
         for i in 0..len {
             use std::cmp::Ordering;
             let c = &mut counts[i];
@@ -55,7 +61,8 @@ pub fn multiply<T: Copy>(a: &Vec<&Vec<T>>) -> Vec<Vec<T>> {
                 Ordering::Greater => {
                     c[0] -= 1;
                     if counts.iter().all(|count| count[0] == 1) {
-                        break 'a;
+                        last_iter = true;
+                        // break 'a;
                     }
                     break;
                 }
@@ -93,10 +100,13 @@ mod combine_tests {
         assert_eq!(
             my_result.len(),
             correct_result.len(),
-            "comparing your vec:\n{:?}\nwith the correct vec:\n{:?}",
+            "wrong length!"
+        );
+        assert!(
+            my_result.iter().all(|e| { correct_result.contains(e) }),
+            "wrong contents! your vec:\n{:?}\ncorrect vec:\n{:?}",
             my_result,
             correct_result
         );
-        assert!(my_result.iter().all(|e| { correct_result.contains(e) }));
     }
 }
