@@ -26,7 +26,7 @@ fn select_helper<T: Clone>(refs: &Vec<T>, n: usize) -> Vec<Vec<T>> {
     return result;
 }
 
-pub fn multiply<T: Copy>(a: &Vec<&Vec<T>>) -> Vec<Vec<T>> {
+pub fn multiply<T: Clone>(a: &Vec<&Vec<T>>) -> Vec<Vec<T>> {
     let mut max_iter = 100;
     let mut result: Vec<Vec<T>> = vec![];
     let mut counts: Vec<[usize; 2]> = vec![];
@@ -42,7 +42,7 @@ pub fn multiply<T: Copy>(a: &Vec<&Vec<T>>) -> Vec<Vec<T>> {
 
         // add combination to n
         for i in 0..len {
-            n.push(a[i][counts[i][0] - 1]);
+            n.push(a[i][counts[i][0] - 1].clone());
         }
 
         // add n to result
