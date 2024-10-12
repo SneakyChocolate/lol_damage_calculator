@@ -198,6 +198,15 @@ pub struct MagicPenetration {
     pub flat: f32,
 }
 
+impl MagicPenetration {
+    pub fn percentage(penetration: f32) -> Self {
+        Self {percentage: penetration, ..Default::default()}
+    }
+    pub fn flat(penetration: f32) -> Self {
+        Self {flat: penetration, ..Default::default()}
+    }
+}
+
 impl Add<MagicPenetration> for MagicPenetration {
     type Output = Self;
     fn add(self, rhs: Self) -> Self::Output {

@@ -188,13 +188,7 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
         stats: Stats {
             attack_damage: 50.0,
             health: 550.0,
-            on_hit_damage: OnHitDamage {
-                max_hp: Damage {
-                    normal: 0.015,
-                    ..Default::default()
-                },
-                ..Default::default()
-            },
+            on_hit_damage: OnHitDamage::max_hp(Damage::normal(0.015)),
             ..Default::default()
         },
         ..Default::default()
@@ -205,13 +199,7 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
         stats: Stats {
             attack_damage: 50.0,
             attack_speed: 0.40,
-            on_hit_damage: OnHitDamage {
-                flat: Damage {
-                    magic: 90.0 / 12.0,
-                    ..Default::default()
-                },
-                ..Default::default()
-            },
+            on_hit_damage: OnHitDamage::flat(Damage::magic(90.0 / 12.0)),
             ..Default::default()
         },
         ..Default::default()
@@ -222,23 +210,11 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
         stats: Stats {
             attack_damage: 35.0,
             attack_speed: 0.35,
-            on_hit_damage: OnHitDamage {
-                flat: Damage {
-                    magic: 30.0,
-                    ..Default::default()
-                },
-                ..Default::default()
-            },
+            on_hit_damage: OnHitDamage::flat(Damage::magic(30.0)),
             armor: 24.0,
             magic_resistance: 24.0,
-            armor_penetration: ArmorPenetration {
-                percentage: 0.3,
-                ..Default::default()
-            },
-            magic_penetration: MagicPenetration {
-                percentage: 0.3,
-                ..Default::default()
-            },
+            armor_penetration: ArmorPenetration::percentage(0.3),
+            magic_penetration: MagicPenetration::percentage(0.3),
             ..Default::default()
         },
         categories: 1,
@@ -251,13 +227,7 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
             attack_damage: 35.0,
             ability_power: 35.0,
             attack_speed: 0.25 + 0.32,
-            on_hit_damage: OnHitDamage {
-                flat: Damage {
-                    magic: 30.0,
-                    ..Default::default()
-                },
-                ..Default::default()
-            },
+            on_hit_damage: OnHitDamage::flat(Damage::magic(30.0)),
             ..Default::default()
         },
         effects: vec![String::from("seething strike")],
@@ -270,14 +240,8 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
             ability_power: 90.0,
             attack_speed: 0.5,
             on_hit_damage: OnHitDamage {
-                flat: Damage {
-                    magic: 15.0,
-                    ..Default::default()
-                },
-                bonus_ap: Damage {
-                    magic: 0.2,
-                    ..Default::default()
-                },
+                flat: Damage::magic(15.0),
+                bonus_ap: Damage::magic(0.2),
                 ..Default::default()
             },
             ..Default::default()
@@ -296,90 +260,90 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     //     ..Default::default()
     // }));
 
-    vec.push(Rc::new(LolItem {
-        name: String::from("jak sho"),
-        stats: Stats {
-            health: 300.0,
-            armor: 50.0,
-            magic_resistance: 50.0,
-            ..Default::default()
-        },
-        effects: vec![String::from("voidborn resilience")],
-        ..Default::default()
-    }));
+    // vec.push(Rc::new(LolItem {
+    //     name: String::from("jak sho"),
+    //     stats: Stats {
+    //         health: 300.0,
+    //         armor: 50.0,
+    //         magic_resistance: 50.0,
+    //         ..Default::default()
+    //     },
+    //     effects: vec![String::from("voidborn resilience")],
+    //     ..Default::default()
+    // }));
 
-    vec.push(Rc::new(LolItem {
-        name: String::from("mercurial scimitar"),
-        stats: Stats {
-            attack_damage: 40.0,
-            magic_resistance: 50.0,
-            life_steal: 0.1,
-            ..Default::default()
-        },
-        ..Default::default()
-    }));
+    // vec.push(Rc::new(LolItem {
+    //     name: String::from("mercurial scimitar"),
+    //     stats: Stats {
+    //         attack_damage: 40.0,
+    //         magic_resistance: 50.0,
+    //         life_steal: 0.1,
+    //         ..Default::default()
+    //     },
+    //     ..Default::default()
+    // }));
 
-    vec.push(Rc::new(LolItem {
-        name: String::from("maw of malmortius"),
-        stats: Stats {
-            attack_damage: 70.0,
-            magic_resistance: 40.0,
-            ..Default::default()
-        },
-        ..Default::default()
-    }));
+    // vec.push(Rc::new(LolItem {
+    //     name: String::from("maw of malmortius"),
+    //     stats: Stats {
+    //         attack_damage: 70.0,
+    //         magic_resistance: 40.0,
+    //         ..Default::default()
+    //     },
+    //     ..Default::default()
+    // }));
 
-    vec.push(Rc::new(LolItem {
-        name: String::from("steraks gage"),
-        stats: Stats {
-            health: 400.0,
-            ..Default::default()
-        },
-        effects: vec![String::from("the claws that catch")],
-        ..Default::default()
-    }));
+    // vec.push(Rc::new(LolItem {
+    //     name: String::from("steraks gage"),
+    //     stats: Stats {
+    //         health: 400.0,
+    //         ..Default::default()
+    //     },
+    //     effects: vec![String::from("the claws that catch")],
+    //     ..Default::default()
+    // }));
 
-    vec.push(Rc::new(LolItem {
-        name: String::from("youmuus ghostblade"),
-        stats: Stats {
-            attack_damage: 60.0,
-            armor_penetration: ArmorPenetration {
-                flat: 18.0,
-                ..Default::default()
-            },
-            ..Default::default()
-        },
-        ..Default::default()
-    }));
+    // vec.push(Rc::new(LolItem {
+    //     name: String::from("youmuus ghostblade"),
+    //     stats: Stats {
+    //         attack_damage: 60.0,
+    //         armor_penetration: ArmorPenetration {
+    //             flat: 18.0,
+    //             ..Default::default()
+    //         },
+    //         ..Default::default()
+    //     },
+    //     ..Default::default()
+    // }));
 
-    vec.push(Rc::new(LolItem {
-        name: String::from("voltaic cyclosword"),
-        stats: Stats {
-            attack_damage: 55.0,
-            armor_penetration: ArmorPenetration {
-                flat: 18.0,
-                ..Default::default()
-            },
-            ..Default::default()
-        },
-        ..Default::default()
-    }));
+    // vec.push(Rc::new(LolItem {
+    //     name: String::from("voltaic cyclosword"),
+    //     stats: Stats {
+    //         attack_damage: 55.0,
+    //         armor_penetration: ArmorPenetration {
+    //             flat: 18.0,
+    //             ..Default::default()
+    //         },
+    //         ..Default::default()
+    //     },
+    //     ..Default::default()
+    // }));
 
-    vec.push(Rc::new(LolItem {
-        name: String::from("eclipse"),
-        stats: Stats {
-            attack_damage: 70.0,
-            on_hit_damage: OnHitDamage {
-                enemy_max_hp: Damage {
-                    normal: 0.06 / 10.0,
-                    ..Default::default()
-                },
-                ..Default::default()
-            },
-            ..Default::default()
-        },
-        ..Default::default()
-    }));
+    // vec.push(Rc::new(LolItem {
+    //     name: String::from("eclipse"),
+    //     stats: Stats {
+    //         attack_damage: 70.0,
+    //         on_hit_damage: OnHitDamage {
+    //             enemy_max_hp: Damage {
+    //                 normal: 0.06 / 10.0,
+    //                 ..Default::default()
+    //             },
+    //             ..Default::default()
+    //         },
+    //         ..Default::default()
+    //     },
+    //     ..Default::default()
+    // }));
 
     vec.push(Rc::new(LolItem {
         name: String::from("the collector"),
@@ -395,15 +359,15 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
         ..Default::default()
     }));
 
-    vec.push(Rc::new(LolItem {
-        name: String::from("deaths dance"),
-        stats: Stats {
-            attack_damage: 60.0,
-            armor: 40.0,
-            ..Default::default()
-        },
-        ..Default::default()
-    }));
+    // vec.push(Rc::new(LolItem {
+    //     name: String::from("deaths dance"),
+    //     stats: Stats {
+    //         attack_damage: 60.0,
+    //         armor: 40.0,
+    //         ..Default::default()
+    //     },
+    //     ..Default::default()
+    // }));
     
     vec.push(Rc::new(LolItem {
         name: String::from("yun tal wildarrows"),
@@ -419,6 +383,7 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
         },
         ..Default::default()
     }));
+    
     vec.push(Rc::new(LolItem {
         name: String::from("dominiks"),
         categories: 1,
