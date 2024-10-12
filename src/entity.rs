@@ -16,6 +16,15 @@ impl Entity {
         self.champion.stats + self.items.stats + *self.rune
     }
 
+    pub fn get_as(&self) -> f32 {
+        let self_sum = self.sum();
+        let mut attackspeed = self_sum.base_attack_speed * (1.0 + self_sum.attack_speed * self_sum.attack_speed_ratio);
+        if attackspeed > 2.5 {
+            attackspeed = 2.5;
+        }
+        return attackspeed;
+    }
+    
     pub fn fight(&self, enemy: &Self) -> (f32, f32) {
         let mut enemy_sum: Stats = enemy.sum();
         let mut self_sum: Stats = self.sum();
@@ -23,18 +32,8 @@ impl Entity {
         // self sum on hit
         let sso = &mut self_sum.on_hit_damage;
 
-        let mut attack_speed =
-            self_sum.base_attack_speed * (1.0 + self_sum.attack_speed - self.rune.attack_speed);
-        if attack_speed > 2.5 {
-            attack_speed = 2.5;
-        }
-        attack_speed += self_sum.base_attack_speed * self.rune.attack_speed;
-        let mut enemy_attack_speed = enemy_sum.base_attack_speed * (1.0 + enemy_sum.attack_speed);
-        if enemy_attack_speed > 2.5 {
-            enemy_attack_speed = 2.5;
-        }
-        attack_speed += enemy_sum.base_attack_speed * enemy.rune.attack_speed;
-
+        let mut attack_speed = self.get_as();
+        let mut enemy_attack_speed = enemy.get_as();
         let bonus_damage = self.items.stats.attack_damage + self.rune.attack_damage;
         let mut attack_damage = self_sum.attack_damage;
         let mut life_steal = self_sum.life_steal;
@@ -52,7 +51,7 @@ impl Entity {
         } else {
             self_sum.crit_chance
         };
-        let mut crit_damage_multiplier = (self_sum.crit_damage - 1.0) * crit_chance + 1.0;
+        let mut crit_damage_multiplier = (self_sum.crit_damage + 1.0) * crit_chance;
 
         // handle item effects
         let mut c = String::from("seething strike");
@@ -78,14 +77,14 @@ impl Entity {
         // handle champion effects (abilities and passives)
         c = String::from("yasuo passive");
         if self.champion.effects.contains(&c) {
-            let rcc = self_sum.crit_chance * 2.5;
+            let rcc = self_sum.crit_chance * 2.0;
             crit_chance *= if rcc > 1.0 {
                 attack_damage += 0.4 * (rcc - 1.0) * 100.0;
                 1.0
             } else {
                 rcc
             };
-            crit_damage_multiplier = (self_sum.crit_damage * 0.9 - 1.0) * crit_chance + 1.0;
+            crit_damage_multiplier = (self_sum.crit_damage * 0.9 + 1.0) * crit_chance;
         }
 
         c = String::from("vayne w");
@@ -121,7 +120,9 @@ impl Entity {
         let sst = self.sum().health / (enemy_dps - self_healing);
         // enemy survival time
         let est = enemy.sum().health / (self_dps - enemy_healing);
-        sst / est
-        // win[0]
+        // sst / est
+        // self_dps
+        // self_healing
+        self_dps + self_healing
     }
 }

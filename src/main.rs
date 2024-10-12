@@ -3,6 +3,7 @@ mod combine;
 mod entity;
 mod lol_item;
 mod stats;
+mod passives;
 
 use std::rc::Rc;
 
@@ -20,26 +21,19 @@ fn main() {
 
     let build1 = Rc::new(LolItem::build(
         vec![
-            // "kraken slayer",
-            // "thornmail",
-            // "infinity edge",
-            // "bloodthirster",
-            // "blade of the ruined king",
-            // "mortal reminder",
-            "kraken slayer",
+            "infinity edge",
             "bloodthirster",
-            "titanic hydra",
-            "terminus",
-            "rageblade",
-            "thornmail",
+            "phantom dancer",
+            "the collector",
+            "yun tal wildarrows",
+            "dominiks",
         ],
         &lol_items,
     ));
 
-    let lt_heal = Rc::new(Stats {
-        attack_damage: 32.0,
-        attack_speed: 0.81 + 0.1,
-        life_steal: 0.0525,
+    let cq_heal = Rc::new(Stats {
+        attack_damage: 29.0 + (4.0 * 12.0 * 18.0 / 30.0),
+        life_steal: 0.0525 + 0.08,
         ..Default::default()
     });
 
@@ -47,12 +41,12 @@ fn main() {
 
     let enemy = Entity {
         name: String::from(""),
-        champion: match champions.iter().find(|&a| a.name == String::from("udyr")) {
+        champion: match champions.iter().find(|&a| a.name == String::from("yasuo")) {
             Some(c) => Rc::clone(&c),
             None => panic!("champion not found"),
         },
         items: Rc::clone(&build1),
-        rune: Rc::clone(&lt_heal),
+        rune: Rc::clone(&cq_heal),
     };
 
     let mut best_value_option: Option<f32> = None;
@@ -71,12 +65,12 @@ fn main() {
         // update entity for evaluation
         let my_entity = Rc::new(Entity {
             name: String::from(""),
-            champion: match champions.iter().find(|&a| a.name == String::from("yasuo")) {
+            champion: match champions.iter().find(|&a| a.name == String::from("udyr")) {
                 Some(c) => Rc::clone(&c),
                 None => panic!("champion not found"),
             },
             items: Rc::clone(&buildx),
-            rune: Rc::clone(&lt_heal),
+            rune: Rc::clone(&cq_heal),
         });
 
         // my_champ.items = &buildx;
