@@ -249,7 +249,7 @@ impl Default for Stats {
             ability_power: Default::default(),
             base_attack_speed: Default::default(),
             attack_speed: Default::default(),
-            attack_speed_ratio: 1.0,
+            attack_speed_ratio: Default::default(),
             crit_chance: Default::default(),
             crit_damage: Default::default(),
             on_hit_damage: Default::default(),
@@ -295,5 +295,11 @@ impl Add<&Stats> for Stats {
 impl<'a> Sum<&'a Stats> for Stats {
     fn sum<I: Iterator<Item = &'a Stats>>(iter: I) -> Stats {
         iter.fold(Default::default(), |a, b| a + b)
+    }
+}
+
+impl Stats {
+    pub fn get_as(&self) -> f32 {
+        self.base_attack_speed + self.attack_speed * self.attack_speed_ratio
     }
 }

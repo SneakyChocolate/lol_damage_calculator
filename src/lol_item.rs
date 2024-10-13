@@ -89,9 +89,9 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("infinity edge"),
         stats: Stats {
-            attack_damage: 80.0,
+            attack_damage: 70.0,
             crit_chance: 0.25,
-            crit_damage: 0.50,
+            crit_damage: 0.40,
             ..Default::default()
         },
         ..Default::default()
@@ -100,9 +100,9 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("kraken slayer"),
         stats: Stats {
-            attack_damage: 50.0,
+            attack_damage: 45.0,
             attack_speed: 0.4,
-            on_hit_damage: OnHitDamage::flat(Damage::normal(400.0 / 3.0)),
+            on_hit_damage: OnHitDamage::flat(Damage::normal(240.0 / 3.0)),
             ..Default::default()
         },
         ..Default::default()
@@ -112,7 +112,7 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
         name: String::from("bloodthirster"),
         stats: Stats {
             attack_damage: 80.0,
-            life_steal: 0.18,
+            life_steal: 0.15,
             ..Default::default()
         },
         ..Default::default()
@@ -121,10 +121,10 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("blade of the ruined king"),
         stats: Stats {
-            attack_damage: 55.0,
-            attack_speed: 0.3,
+            attack_damage: 40.0,
+            attack_speed: 0.25,
             life_steal: 0.1,
-            on_hit_damage: OnHitDamage::enemy_hp(Damage::normal(0.12)),
+            on_hit_damage: OnHitDamage::enemy_hp(Damage::normal(0.6)),
             ..Default::default()
         },
         ..Default::default()
@@ -133,7 +133,7 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("mortal reminder"),
         stats: Stats {
-            attack_damage: 40.0,
+            attack_damage: 35.0,
             crit_chance: 0.25,
             armor_penetration: ArmorPenetration::percentage(0.35),
             ..Default::default()
@@ -208,7 +208,7 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("terminus"),
         stats: Stats {
-            attack_damage: 35.0,
+            attack_damage: 30.0,
             attack_speed: 0.35,
             on_hit_damage: OnHitDamage::flat(Damage::magic(30.0)),
             armor: 24.0,
@@ -224,9 +224,9 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("rageblade"),
         stats: Stats {
-            attack_damage: 35.0,
-            ability_power: 35.0,
-            attack_speed: 0.25 + 0.32,
+            attack_damage: 30.0,
+            ability_power: 30.0,
+            attack_speed: 0.25 + 0.08 * 4.0,
             on_hit_damage: OnHitDamage::flat(Damage::magic(30.0)),
             ..Default::default()
         },
@@ -237,11 +237,11 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("nashors tooth"),
         stats: Stats {
-            ability_power: 90.0,
+            ability_power: 80.0,
             attack_speed: 0.5,
             on_hit_damage: OnHitDamage {
                 flat: Damage::magic(15.0),
-                bonus_ap: Damage::magic(0.2),
+                bonus_ap: Damage::magic(0.15),
                 ..Default::default()
             },
             ..Default::default()
@@ -348,12 +348,9 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("the collector"),
         stats: Stats {
-            attack_damage: 60.0,
+            attack_damage: 50.0,
             crit_chance: 0.25,
-            armor_penetration: ArmorPenetration {
-                flat: 15.0,
-                ..Default::default()
-            },
+            armor_penetration: ArmorPenetration::flat(10.0),
             ..Default::default()
         },
         ..Default::default()
@@ -372,13 +369,9 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("yun tal wildarrows"),
         stats: Stats {
-            attack_damage: 65.0,
+            attack_damage: 60.0,
             crit_chance: 0.25,
-            on_hit_damage: OnHitDamage {
-                base_ad: Damage {normal: 0.35, ..Default::default()},
-                bonus_ad: Damage {normal: 0.35, ..Default::default()},
-                ..Default::default()
-            },
+            on_hit_damage: OnHitDamage::flat(Damage::normal(20.0)),
             ..Default::default()
         },
         ..Default::default()
@@ -388,9 +381,9 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
         name: String::from("dominiks"),
         categories: 1,
         stats: Stats {
-            attack_damage: 45.0,
+            attack_damage: 35.0,
             crit_chance: 0.25,
-            armor_penetration: ArmorPenetration { percentage: 0.4, flat:  0.0},
+            armor_penetration: ArmorPenetration::percentage(0.35),
             ..Default::default()
         },
         ..Default::default()

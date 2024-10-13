@@ -25,6 +25,22 @@ pub fn init(vec: &mut Vec<Rc<Champion>>) {
         },
         ..Default::default()
     }));
+    vec.push(Rc::new(Champion {
+        name: String::from("kayle"),
+        melee: false,
+        stats: Stats {
+            attack_damage: 92.5,
+            base_attack_speed: 0.625,
+            attack_speed_ratio: 0.667,
+            crit_damage: 0.75,
+            health: 2234.0,
+            armor: 97.4,
+            magic_resistance: 44.1,
+            ..Default::default()
+        },
+        effects: vec!["kayle e".into(), "kayle passive".into()],
+        ..Default::default()
+    }));
 
     vec.push(Rc::new(Champion {
         name: String::from("yasuo"),
@@ -32,7 +48,6 @@ pub fn init(vec: &mut Vec<Rc<Champion>>) {
         stats: Stats {
             attack_damage: 111.0,
             base_attack_speed: 0.697,
-            attack_speed: 0.595,
             crit_damage: 0.75,
             health: 2460.0,
             armor: 198.2,

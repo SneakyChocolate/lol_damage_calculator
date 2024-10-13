@@ -15,25 +15,17 @@ impl Entity {
     pub fn sum(&self) -> Stats {
         self.champion.stats + self.items.stats + *self.rune
     }
-
-    pub fn get_as(&self) -> f32 {
-        let self_sum = self.sum();
-        let mut attackspeed = self_sum.base_attack_speed * (1.0 + self_sum.attack_speed * self_sum.attack_speed_ratio);
-        if attackspeed > 2.5 {
-            attackspeed = 2.5;
-        }
-        return attackspeed;
-    }
     
     pub fn fight(&self, enemy: &Self) -> (f32, f32) {
         let mut enemy_sum: Stats = enemy.sum();
         let mut self_sum: Stats = self.sum();
 
+        let mut attack_speed = self_sum.get_as();
+        let mut enemy_attack_speed = enemy_sum.get_as();
+        
         // self sum on hit
         let sso = &mut self_sum.on_hit_damage;
 
-        let mut attack_speed = self.get_as();
-        let mut enemy_attack_speed = enemy.get_as();
         let bonus_damage = self.items.stats.attack_damage + self.rune.attack_damage;
         let mut attack_damage = self_sum.attack_damage;
         let mut life_steal = self_sum.life_steal;
@@ -92,6 +84,17 @@ impl Entity {
             // sso.enemy_max_hp.trued += 0.1 / 3.0;
             raw_on_hit.trued += 0.1 / 3.0 * enemy_sum.health;
         }
+        
+        c = String::from("kayle e");
+        if self.champion.effects.contains(&c) {
+            raw_on_hit.magic += 35.0 + 0.2 * self_sum.ability_power + 0.1 * bonus_damage;
+        }
+        c = String::from("kayle passive");
+        if self.champion.effects.contains(&c) {
+            self_sum.attack_speed += 5.0 * (0.06 * 0.05 * self_sum.ability_power);
+            attack_speed = self_sum.get_as();
+            raw_on_hit.magic += 41.0 + 0.25 * self_sum.ability_power + 0.1 * bonus_damage;
+        }
 
         // raw damage per hit
         let rdph = Damage {
@@ -121,7 +124,6 @@ impl Entity {
         // enemy survival time
         let est = enemy.sum().health / (self_dps - enemy_healing);
         // sst / est
-        // self_dps
         // self_healing
         self_dps + self_healing
     }
