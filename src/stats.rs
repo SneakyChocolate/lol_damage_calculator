@@ -10,13 +10,22 @@ pub struct Damage {
 
 impl Damage {
     pub fn magic(damage: f32) -> Self {
-        Damage { magic: damage, ..Default::default() }
+        Damage {
+            magic: damage,
+            ..Default::default()
+        }
     }
     pub fn normal(damage: f32) -> Self {
-        Damage { normal: damage, ..Default::default() }
+        Damage {
+            normal: damage,
+            ..Default::default()
+        }
     }
     pub fn trued(damage: f32) -> Self {
-        Damage { trued: damage, ..Default::default() }
+        Damage {
+            trued: damage,
+            ..Default::default()
+        }
     }
     pub fn reduction_multiplier(attacker_sum: &Stats, receiver_sum: &Stats) -> Self {
         let self_sum = attacker_sum;
@@ -116,25 +125,46 @@ pub struct OnHitDamage {
 
 impl OnHitDamage {
     pub fn flat(damage: Damage) -> Self {
-        Self { flat: damage, ..Default::default() }
+        Self {
+            flat: damage,
+            ..Default::default()
+        }
     }
     pub fn bonus_ad(damage: Damage) -> Self {
-        Self { bonus_ad: damage, ..Default::default() }
+        Self {
+            bonus_ad: damage,
+            ..Default::default()
+        }
     }
     pub fn enemy_hp(damage: Damage) -> Self {
-        Self { enemy_hp: damage, ..Default::default() }
+        Self {
+            enemy_hp: damage,
+            ..Default::default()
+        }
     }
     pub fn max_hp(damage: Damage) -> Self {
-        Self { max_hp: damage, ..Default::default() }
+        Self {
+            max_hp: damage,
+            ..Default::default()
+        }
     }
     pub fn base_ad(damage: Damage) -> Self {
-        Self { base_ad: damage, ..Default::default() }
+        Self {
+            base_ad: damage,
+            ..Default::default()
+        }
     }
     pub fn bonus_ap(damage: Damage) -> Self {
-        Self { bonus_ap: damage, ..Default::default() }
+        Self {
+            bonus_ap: damage,
+            ..Default::default()
+        }
     }
     pub fn enemy_max_hp(damage: Damage) -> Self {
-        Self { enemy_max_hp: damage, ..Default::default() }
+        Self {
+            enemy_max_hp: damage,
+            ..Default::default()
+        }
     }
 }
 
@@ -168,10 +198,16 @@ pub struct ArmorPenetration {
 
 impl ArmorPenetration {
     pub fn percentage(penetration: f32) -> Self {
-        Self {percentage: penetration, ..Default::default()}
+        Self {
+            percentage: penetration,
+            ..Default::default()
+        }
     }
     pub fn flat(penetration: f32) -> Self {
-        Self {flat: penetration, ..Default::default()}
+        Self {
+            flat: penetration,
+            ..Default::default()
+        }
     }
 }
 
@@ -200,10 +236,16 @@ pub struct MagicPenetration {
 
 impl MagicPenetration {
     pub fn percentage(penetration: f32) -> Self {
-        Self {percentage: penetration, ..Default::default()}
+        Self {
+            percentage: penetration,
+            ..Default::default()
+        }
     }
     pub fn flat(penetration: f32) -> Self {
-        Self {flat: penetration, ..Default::default()}
+        Self {
+            flat: penetration,
+            ..Default::default()
+        }
     }
 }
 
@@ -242,8 +284,8 @@ pub struct Stats {
     pub magic_resistance: f32,
 }
 
-impl Default for Stats {
-    fn default() -> Self {
+impl Default for Stats {
+    fn default() -> Self {
         Stats {
             attack_damage: Default::default(),
             ability_power: Default::default(),
@@ -300,6 +342,11 @@ impl<'a> Sum<&'a Stats> for Stats {
 
 impl Stats {
     pub fn get_as(&self) -> f32 {
-        self.base_attack_speed + self.attack_speed * self.attack_speed_ratio
+        let asp = self.base_attack_speed + self.attack_speed * self.attack_speed_ratio;
+        if asp > 2.5 {
+            2.5
+        } else {
+            asp
+        }
     }
 }

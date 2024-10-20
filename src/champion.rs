@@ -27,6 +27,19 @@ pub fn init(vec: &mut Vec<Rc<Champion>>) {
         ..Default::default()
     }));
     vec.push(Rc::new(Champion {
+        name: String::from("azir"),
+        melee: false,
+        stats: Stats {
+            attack_damage: 90.0,
+            base_attack_speed: 0.625,
+            attack_speed: 1.02,
+            crit_damage: 0.75,
+            attack_speed_ratio: 0.694,
+            ..Default::default()
+        },
+        ..Default::default()
+    }));
+    vec.push(Rc::new(Champion {
         name: String::from("kayle"),
         melee: false,
         stats: Stats {
