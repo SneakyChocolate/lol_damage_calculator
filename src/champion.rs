@@ -21,6 +21,7 @@ pub fn init(vec: &mut Vec<Rc<Champion>>) {
             health: 2228.0,
             armor: 110.9,
             magic_resistance: 66.85,
+            attack_speed_ratio: 1.0,
             ..Default::default()
         },
         ..Default::default()
@@ -49,6 +50,7 @@ pub fn init(vec: &mut Vec<Rc<Champion>>) {
             attack_damage: 111.0,
             base_attack_speed: 0.697,
             crit_damage: 0.75,
+            attack_speed_ratio: 1.0,
             health: 2460.0,
             armor: 198.2,
             magic_resistance: 66.85,
@@ -69,9 +71,26 @@ pub fn init(vec: &mut Vec<Rc<Champion>>) {
             health: 2301.0,
             armor: 101.2,
             magic_resistance: 52.1,
+            attack_speed_ratio: 1.0,
             ..Default::default()
         },
         effects: vec![String::from("vayne w")],
+        ..Default::default()
+    }));
+    vec.push(Rc::new(Champion {
+        name: String::from("sona"),
+        melee: false,
+        stats: Stats {
+            attack_damage: 100.0,
+            base_attack_speed: 0.644,
+            attack_speed: 0.391,
+            crit_damage: 0.75,
+            health: 2097.0,
+            armor: 97.4,
+            magic_resistance: 52.1,
+            attack_speed_ratio: 1.0,
+            ..Default::default()
+        },
         ..Default::default()
     }));
     vec.push(Rc::new(Champion {
@@ -97,6 +116,7 @@ pub fn init(vec: &mut Vec<Rc<Champion>>) {
             health: 2500.0,
             armor: 500.0,
             magic_resistance: 500.0,
+            attack_speed_ratio: 1.0,
             ..Default::default()
         },
         ..Default::default()

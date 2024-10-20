@@ -371,7 +371,7 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
         stats: Stats {
             attack_damage: 60.0,
             crit_chance: 0.25,
-            on_hit_damage: OnHitDamage::flat(Damage::normal(20.0)),
+            on_hit_damage: OnHitDamage::flat(Damage::normal(60.0)),
             ..Default::default()
         },
         ..Default::default()

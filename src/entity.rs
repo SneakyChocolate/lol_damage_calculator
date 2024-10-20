@@ -15,14 +15,14 @@ impl Entity {
     pub fn sum(&self) -> Stats {
         self.champion.stats + self.items.stats + *self.rune
     }
-    
+
     pub fn fight(&self, enemy: &Self) -> (f32, f32) {
         let mut enemy_sum: Stats = enemy.sum();
         let mut self_sum: Stats = self.sum();
 
         let mut attack_speed = self_sum.get_as();
         let mut enemy_attack_speed = enemy_sum.get_as();
-        
+
         // self sum on hit
         let sso = &mut self_sum.on_hit_damage;
 
@@ -84,7 +84,7 @@ impl Entity {
             // sso.enemy_max_hp.trued += 0.1 / 3.0;
             raw_on_hit.trued += 0.1 / 3.0 * enemy_sum.health;
         }
-        
+
         c = String::from("kayle e");
         if self.champion.effects.contains(&c) {
             raw_on_hit.magic += 35.0 + 0.2 * self_sum.ability_power + 0.1 * bonus_damage;

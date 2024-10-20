@@ -2,8 +2,8 @@ mod champion;
 mod combine;
 mod entity;
 mod lol_item;
-mod stats;
 mod passives;
+mod stats;
 
 use std::rc::Rc;
 
@@ -32,7 +32,8 @@ fn main() {
     ));
 
     let cq_heal = Rc::new(Stats {
-        attack_damage: 29.0 + (4.0 * 12.0 * 18.0 / 30.0),
+        attack_damage: 29.0,
+        attack_speed: 0.3,
         life_steal: 0.0525 + 0.08,
         ..Default::default()
     });
@@ -65,7 +66,7 @@ fn main() {
         // update entity for evaluation
         let my_entity = Rc::new(Entity {
             name: String::from(""),
-            champion: match champions.iter().find(|&a| a.name == String::from("kayle")) {
+            champion: match champions.iter().find(|&a| a.name == String::from("sona")) {
                 Some(c) => Rc::clone(&c),
                 None => panic!("champion not found"),
             },
