@@ -21,7 +21,7 @@ pub fn init(vec: &mut Vec<Rc<Champion>>) {
             health: 2228.0,
             armor: 110.9,
             magic_resistance: 66.85,
-            attack_speed_ratio: 1.0,
+            attack_speed_ratio: 0.65,
             ..Default::default()
         },
         ..Default::default()
@@ -50,7 +50,7 @@ pub fn init(vec: &mut Vec<Rc<Champion>>) {
             attack_damage: 111.0,
             base_attack_speed: 0.697,
             crit_damage: 0.75,
-            attack_speed_ratio: 1.0,
+            attack_speed_ratio: 0.670,
             health: 2460.0,
             armor: 110.2,
             magic_resistance: 66.85,
@@ -88,7 +88,7 @@ pub fn init(vec: &mut Vec<Rc<Champion>>) {
             health: 2097.0,
             armor: 97.4,
             magic_resistance: 52.1,
-            attack_speed_ratio: 1.0,
+            attack_speed_ratio: 0.644,
             ..Default::default()
         },
         ..Default::default()
