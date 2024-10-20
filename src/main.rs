@@ -31,10 +31,26 @@ fn main() {
         &lol_items,
     ));
 
-    let cq_heal = Rc::new(Stats {
+    let conqueror_heal = Rc::new(Stats {
+        attack_damage: 29.0,
+        life_steal: 0.0525 + 0.08,
+        ..Default::default()
+    });
+    let lethal_heal = Rc::new(Stats {
         attack_damage: 29.0,
         attack_speed: 0.3,
-        life_steal: 0.0525 + 0.08,
+        life_steal: 0.0525,
+        ..Default::default()
+    });
+    let conqueror_speed = Rc::new(Stats {
+        attack_damage: 29.0,
+        attack_speed: 0.18,
+        life_steal: 0.08,
+        ..Default::default()
+    });
+    let lethal_speed = Rc::new(Stats {
+        attack_damage: 29.0,
+        attack_speed: 0.3 + 0.18,
         ..Default::default()
     });
 
@@ -47,7 +63,7 @@ fn main() {
             None => panic!("champion not found"),
         },
         items: Rc::clone(&build1),
-        rune: Rc::clone(&cq_heal),
+        rune: Rc::clone(&conqueror_heal),
     };
 
     let mut best_value_option: Option<f32> = None;
@@ -71,7 +87,7 @@ fn main() {
                 None => panic!("champion not found"),
             },
             items: Rc::clone(&buildx),
-            rune: Rc::clone(&cq_heal),
+            rune: Rc::clone(&lethal_heal),
         });
 
         // my_champ.items = &buildx;
