@@ -87,7 +87,7 @@ fn main() {
                 None => panic!("champion not found"),
             },
             items: Rc::clone(&buildx),
-            rune: Rc::clone(&lethal_heal),
+            rune: Rc::clone(&lethal_speed),
         });
 
         // my_champ.items = &buildx;
