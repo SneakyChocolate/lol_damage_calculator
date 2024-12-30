@@ -123,8 +123,9 @@ impl Entity {
         let sst = self.sum().health / (enemy_dps - self_healing);
         // enemy survival time
         let est = enemy.sum().health / (self_dps - enemy_healing);
-        // sst / est
-        self_healing
+        // self_dps
+        sst / est
+        // self_healing
         // self_dps + self_healing * 2.0
     }
 }

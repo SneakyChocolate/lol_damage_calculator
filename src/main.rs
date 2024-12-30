@@ -82,7 +82,7 @@ fn main() {
         // update entity for evaluation
         let my_entity = Rc::new(Entity {
             name: String::from(""),
-            champion: match champions.iter().find(|&a| a.name == String::from("azir")) {
+            champion: match champions.iter().find(|&a| a.name == String::from("udyr")) {
                 Some(c) => Rc::clone(&c),
                 None => panic!("champion not found"),
             },

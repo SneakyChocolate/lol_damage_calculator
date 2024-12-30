@@ -369,9 +369,9 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("yun tal wildarrows"),
         stats: Stats {
-            attack_damage: 60.0,
+            attack_damage: 50.0,
             crit_chance: 0.25,
-            on_hit_damage: OnHitDamage::flat(Damage::normal(60.0)),
+            attack_speed: 0.25,
             ..Default::default()
         },
         ..Default::default()
