@@ -146,7 +146,7 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
     vec.push(Rc::new(LolItem {
         name: String::from("ravenous hydra"),
         stats: Stats {
-            attack_damage: 70.0,
+            attack_damage: 65.0,
             life_steal: 0.12,
             ..Default::default()
         },
@@ -371,7 +371,7 @@ pub fn init(vec: &mut Vec<Rc<LolItem>>) {
         stats: Stats {
             attack_damage: 50.0,
             crit_chance: 0.25,
-            attack_speed: 0.25,
+            attack_speed: 0.20,
             ..Default::default()
         },
         ..Default::default()
